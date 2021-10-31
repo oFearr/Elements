@@ -1,0 +1,11 @@
+# ======================================================= #
+# -------------------- Basic Settings ------------------- #
+# ======================================================= #
+
+#Placeholders
+# - "<player-name>" - player name
+# - "<prefix>" - luckperms prefix
+
+join-message: "<prefix> &a<player-name> has joined the party!"
+blacklisted-entities:
+  - PHANTOM

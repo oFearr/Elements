@@ -1,0 +1,37 @@
+name: Elements
+depend: [LuckPerms]
+version: ${project.version}
+main: me.ofearr.elements.Elements
+api-version: 1.13
+authors: [oFearr]
+description: Fully equiped bukkit plugin to take care of most of your needs
+commands:
+  gms:
+    description: Updates your gamemode to Survival!
+    aliases:
+      - gamemodes
+  gmc:
+    description: Updates your gamemode to Creative!
+    aliases:
+      - gamemodec
+  gmsp:
+    description: Updates your gamemode to Spectator!
+    aliases:
+      - gamemodesp
+  gma:
+    description: Updates your gamemode to Adventure!
+    aliases:
+      - gamemodea
+  playerlist:
+    description: Opens the player list GUI!
+    aliases:
+      - players
+
+permissions:
+  elements.*:
+    children:
+      elements.gmc: true
+      elements.gms: true
+      elements.gmsp: true
+      elements.gma: true
+      elements.playerlist: true

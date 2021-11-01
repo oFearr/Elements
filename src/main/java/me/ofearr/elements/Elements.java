@@ -1,11 +1,14 @@
 package me.ofearr.elements;
 
 import me.ofearr.elements.Commands.GamemodeCMD;
+import me.ofearr.elements.Commands.HomeCMD;
 import me.ofearr.elements.Commands.PlayerListCMD;
 import me.ofearr.elements.Events.Misc.CustomJoinMessageHandler;
 import me.ofearr.elements.Events.Misc.EntityBlacklistHandler;
+import me.ofearr.elements.Events.Misc.HomesGUIHandler;
 import me.ofearr.elements.Events.Misc.PlayerListHandler;
 import me.ofearr.elements.PlayerData.PlayerDataHandler;
+import me.ofearr.elements.Utils.HomeUtils;
 import me.ofearr.elements.Utils.LuckPermsUtils;
 import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
@@ -16,6 +19,7 @@ public final class Elements extends JavaPlugin {
 
     public LuckPerms luckPerms;
     public LuckPermsUtils luckPermsUtils;
+    public HomeUtils homeUtils;
 
     @Override
     public void onEnable() {
@@ -28,6 +32,7 @@ public final class Elements extends JavaPlugin {
         }
 
         luckPermsUtils = new LuckPermsUtils(luckPerms);
+        homeUtils = new HomeUtils(this);
 
         registerCommands();
         registerEvents();
@@ -35,12 +40,16 @@ public final class Elements extends JavaPlugin {
 
     public void registerCommands(){
         GamemodeCMD gamemodeCMD = new GamemodeCMD();
+        HomeCMD homeCMD = new HomeCMD(this);
 
         getCommand("gms").setExecutor(gamemodeCMD);
         getCommand("gmc").setExecutor(gamemodeCMD);
         getCommand("gmsp").setExecutor(gamemodeCMD);
         getCommand("gma").setExecutor(gamemodeCMD);
         getCommand("playerlist").setExecutor(new PlayerListCMD(this));
+        getCommand("sethome").setExecutor(homeCMD);
+        getCommand("home").setExecutor(homeCMD);
+        getCommand("homes").setExecutor(homeCMD);
     }
 
     public void registerEvents(){
@@ -48,5 +57,6 @@ public final class Elements extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EntityBlacklistHandler(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerListHandler(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDataHandler(), this);
+        Bukkit.getPluginManager().registerEvents(new HomesGUIHandler(this), this);
     }
 }

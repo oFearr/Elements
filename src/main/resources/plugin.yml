@@ -26,6 +26,13 @@ commands:
     description: Opens the player list GUI!
     aliases:
       - players
+  sethome:
+    description: Sets a home at your current location with the specified name.
+  home:
+    description: Sends you to the specified home.
+  homes:
+    description: Opens the homes GUI.
+    aliases: [homelist]
 
 permissions:
   elements.*:
@@ -35,3 +42,7 @@ permissions:
       elements.gmsp: true
       elements.gma: true
       elements.playerlist: true
+      elements.homes.max: true
+      elements.home: true
+      elements.sethome: true
+      elements.homelist: true

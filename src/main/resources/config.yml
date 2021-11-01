@@ -9,3 +9,10 @@
 join-message: "<prefix> &a<player-name> has joined the party!"
 blacklisted-entities:
   - PHANTOM
+
+#Home groups, name of group followed by the permission node and the amount of homes this group gets
+#The group name doesn't matter, just to help configurators identify the group in the config.
+homes:
+  default:
+    permission: "elements.homes.3"
+    count: 3

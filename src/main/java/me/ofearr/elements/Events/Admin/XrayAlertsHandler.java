@@ -65,8 +65,8 @@ public class XrayAlertsHandler implements Listener {
                             PlayerDataHandler playerDataHandler = new PlayerDataHandler();
 
                             for(Player p : Bukkit.getOnlinePlayers()){
-                                if(p.hasPermission("elements.xrayalerts") && playerDataHandler.hasXrayNotifsEnabled(player)){
-                                    player.sendMessage(StringUtils.translate("&b&lElements &8[&cXRAY&8] >> &c" + player.getName() + " has mined " + playerCount + " " + material.toString().toLowerCase() + " in the past " + (interval / 20) + "s!"));
+                                if(p.hasPermission("elements.xrayalerts") && playerDataHandler.hasXrayNotifsEnabled(p)){
+                                    p.sendMessage(StringUtils.translate("&b&lElements &8[&cXRAY&8] >> &c" + player.getName() + " has mined " + playerCount + " " + material.toString().toLowerCase() + " in the past " + (interval / 20) + "s!"));
                                 }
                             }
 

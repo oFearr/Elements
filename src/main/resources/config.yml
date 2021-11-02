@@ -16,3 +16,20 @@ homes:
   default:
     permission: "elements.homes.3"
     count: 3
+
+chat-filter:
+  - "changeme"
+  - "changeme2"
+
+#These are the settings to change related to xray alerts
+xray-alerts:
+  diamond_ore:
+    check-interval: 30
+    required-amount: 15
+  gold_ore:
+    check-interval: 30
+    required-amount: 20
+  emerald_ore:
+    check-interval: 30
+    required-amount: 10
+

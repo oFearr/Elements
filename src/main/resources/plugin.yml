@@ -33,6 +33,15 @@ commands:
   homes:
     description: Opens the homes GUI.
     aliases: [homelist]
+  feed:
+    description: Fully saturates your hunger bar.
+  heal:
+    description: Fully heals you.
+  fly:
+    description: Allows you to fly!
+  togglealerts:
+    description: Toggles xray alerts.
+    aliases: [disablealerts, togglexray, togglexrayalerts, xrayalerts, alerts, monitor]
 
 permissions:
   elements.*:
@@ -46,3 +55,8 @@ permissions:
       elements.home: true
       elements.sethome: true
       elements.homelist: true
+      elements.feed: true
+      elements.heal: true
+      elements.admin: true
+      elements.xrayalerts: true
+

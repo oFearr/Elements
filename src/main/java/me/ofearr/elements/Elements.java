@@ -1,12 +1,8 @@
 package me.ofearr.elements;
 
-import me.ofearr.elements.Commands.GamemodeCMD;
-import me.ofearr.elements.Commands.HomeCMD;
-import me.ofearr.elements.Commands.PlayerListCMD;
-import me.ofearr.elements.Events.Misc.CustomJoinMessageHandler;
-import me.ofearr.elements.Events.Misc.EntityBlacklistHandler;
-import me.ofearr.elements.Events.Misc.HomesGUIHandler;
-import me.ofearr.elements.Events.Misc.PlayerListHandler;
+import me.ofearr.elements.Commands.*;
+import me.ofearr.elements.Events.Admin.XrayAlertsHandler;
+import me.ofearr.elements.Events.Misc.*;
 import me.ofearr.elements.PlayerData.PlayerDataHandler;
 import me.ofearr.elements.Utils.HomeUtils;
 import me.ofearr.elements.Utils.LuckPermsUtils;
@@ -50,6 +46,10 @@ public final class Elements extends JavaPlugin {
         getCommand("sethome").setExecutor(homeCMD);
         getCommand("home").setExecutor(homeCMD);
         getCommand("homes").setExecutor(homeCMD);
+        getCommand("heal").setExecutor(new HealCMD());
+        getCommand("feed").setExecutor(new FeedCMD());
+        getCommand("fly").setExecutor(new FlyCMD());
+        getCommand("togglealerts").setExecutor(new ToggleAlertsCMD());
     }
 
     public void registerEvents(){
@@ -58,5 +58,7 @@ public final class Elements extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerListHandler(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDataHandler(), this);
         Bukkit.getPluginManager().registerEvents(new HomesGUIHandler(this), this);
+        Bukkit.getPluginManager().registerEvents(new ChatFilterHandler(this), this);
+        Bukkit.getPluginManager().registerEvents(new XrayAlertsHandler(this), this);
     }
 }

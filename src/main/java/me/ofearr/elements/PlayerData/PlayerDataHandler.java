@@ -62,12 +62,22 @@ public class PlayerDataHandler implements Listener {
         return dataManager.getConfig().getInt("stats.exp-gained");
     }
 
+    public boolean hasXrayNotifsEnabled(Player player){
+
+        PlayerDataManager dataManager = new PlayerDataManager();
+        dataManager.load(player);
+
+        return dataManager.getConfig().getBoolean("settings.xray-alerts");
+    }
+
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerJoinCreateDataFile(PlayerJoinEvent e){
         Player player = e.getPlayer();
 
         PlayerDataManager dataManager = new PlayerDataManager();
         dataManager.create(player);
+
+        boolean modified = false;
 
         if(dataManager.getConfig().get("stats.deaths") == null){
             dataManager.getConfig().set("stats.deaths", 0);
@@ -78,8 +88,19 @@ public class PlayerDataHandler implements Listener {
             dataManager.getConfig().set("stats.netherite-mined", 0);
             dataManager.getConfig().set("stats.exp-gained", 0);
 
+            modified = true;
+        }
+
+        if(dataManager.getConfig().get("settings.xray-alerts") == null){
+            dataManager.getConfig().set("settings.xray-alerts", true);
+
+            modified = true;
+        }
+
+        if(modified){
             dataManager.saveConfig();
         }
+
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)

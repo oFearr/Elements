@@ -52,6 +52,13 @@ public final class Elements extends JavaPlugin {
         getCommand("feed").setExecutor(new FeedCMD());
         getCommand("fly").setExecutor(new FlyCMD());
         getCommand("togglealerts").setExecutor(new ToggleAlertsCMD());
+        getCommand("togglechat").setExecutor(new ToggleChatCMD());
+        getCommand("givespawner").setExecutor(new GiveSpawnerCMD());
+        getCommand("vanish").setExecutor(new VanishCMD());
+        getCommand("glow").setExecutor(new GlowCMD());
+        getCommand("openinv").setExecutor(new OpenInvCMD());
+        getCommand("broadcast").setExecutor(new BroadcastCMD());
+        getCommand("adminchat").setExecutor(new AdminChatCMD());
     }
 
     public void registerEvents(){
@@ -63,7 +70,10 @@ public final class Elements extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerListHandler(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDataHandler(), this);
         Bukkit.getPluginManager().registerEvents(new HomesGUIHandler(this), this);
-        Bukkit.getPluginManager().registerEvents(new ChatFilterHandler(this), this);
+        Bukkit.getPluginManager().registerEvents(new ChatModerationHandler(this), this);
         Bukkit.getPluginManager().registerEvents(new XrayAlertsHandler(this), this);
+        Bukkit.getPluginManager().registerEvents(new SpawnerHandlers(this), this);
+        Bukkit.getPluginManager().registerEvents(new MiscSettingsHandler(this), this);
+        Bukkit.getPluginManager().registerEvents(vanishHandler, this);
     }
 }

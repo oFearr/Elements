@@ -42,6 +42,26 @@ commands:
   togglealerts:
     description: Toggles xray alerts.
     aliases: [disablealerts, togglexray, togglexrayalerts, xrayalerts, alerts, monitor]
+  togglechat:
+    description: Toggles whether chat is enabled or not.
+    aliases: [chatenable, chattoggle]
+  givespawner:
+    description: Gives the player x spawners of x type.
+    aliases: [gs, spawnergive]
+  vanish:
+    description: Hides you from everyone who cannot use this command.
+    aliases: [v, elementsvanish, ev, hideme]
+  glow:
+    description: Makes you glow!
+  openinv:
+    description: Opens the target player's inventory.
+    aliases: [openinventory, invsee]
+  broadcast:
+    description: Sends the specified message to all online players.
+    aliases: [bc, sendall]
+  adminchat:
+    description: Sends a message to all the admins.
+    aliases: [ac, chatadmin]
 
 permissions:
   elements.*:
@@ -59,4 +79,11 @@ permissions:
       elements.heal: true
       elements.admin: true
       elements.xrayalerts: true
-
+      elements.togglechat: true
+      elements.givespawner: true
+      elements.spawnerupgrades: true
+      elements.vanish: true
+      elements.glow: true
+      elements.openinventory: true
+      elements.broadcast: true
+      elements.adminchat: true

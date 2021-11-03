@@ -1,6 +1,8 @@
 package me.ofearr.elements.Events.Misc;
 
 import me.ofearr.elements.Elements;
+import me.ofearr.elements.Utils.StringUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -9,11 +11,23 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.List;
 
-public class ChatFilterHandler implements Listener {
+public class ChatModerationHandler implements Listener {
 
     private Elements plugin;
-    public ChatFilterHandler(Elements elements){
+    public ChatModerationHandler(Elements elements){
         this.plugin = elements;
+    }
+
+    private static boolean chatEnabled = true;
+
+    public static void toggleChat(){
+        if(chatEnabled){
+            chatEnabled = false;
+            Bukkit.broadcastMessage(StringUtils.translate("&b&lElements &8>> &c&lChat has been disabled!"));
+        } else {
+            chatEnabled = true;
+            Bukkit.broadcastMessage(StringUtils.translate("&b&lElements &8>> &a&lChat has been enabled!"));
+        }
     }
 
     public String getCensoredWordReplacement(String word){
@@ -44,6 +58,19 @@ public class ChatFilterHandler implements Listener {
         }
 
         e.setMessage(msg);
+
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onMessageWhileChatDisabled(AsyncPlayerChatEvent e){
+        Player player = e.getPlayer();
+
+        if(player.hasPermission("elements.admin")) return;
+        if(!chatEnabled){
+            e.setCancelled(true);
+
+            player.sendMessage(StringUtils.translate("&b&lElements &8>> &cThe chat is currently muted!"));
+        }
 
     }
 }

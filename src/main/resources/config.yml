@@ -26,7 +26,7 @@ chat-filter:
 #These are the settings to change related to xray alerts
 xray-alerts:
   diamond_ore:
-    check-interval: 30
+    check-interval: 10
     required-amount: 15
   gold_ore:
     check-interval: 30
@@ -34,4 +34,26 @@ xray-alerts:
   emerald_ore:
     check-interval: 30
     required-amount: 10
+
+#This setting is used to determine whether tnt/creepers can break blocks
+explosion-block-damage: false
+
+# ======================================================= #
+# ------------------- Spawner Settings ------------------ #
+# ======================================================= #
+
+spawners:
+
+  #Put the exact entity name (in lowercase) and add the "cost" key, this is the cost in Exp Levels
+  #Also add the "display-name" key, this will contain the name which is displayed in-game to players.
+  spawner-types-shop:
+    pig:
+      cost: 30
+      display-name: "&dPig"
+    zombie:
+      cost: 30
+      display-name: "&aZombie"
+    lightning:
+      cost: 9999
+      display-name: "&eLightning \u26A1"
 

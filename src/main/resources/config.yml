@@ -17,9 +17,11 @@ homes:
     permission: "elements.homes.3"
     count: 3
 
+#These are message contents which will be blocked
 chat-filter:
+  - "ch_ngeme"
   - "changeme"
-  - "changeme2"
+
 
 #These are the settings to change related to xray alerts
 xray-alerts:

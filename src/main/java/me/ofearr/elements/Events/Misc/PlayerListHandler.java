@@ -41,7 +41,7 @@ public class PlayerListHandler implements Listener {
 
                     int page = Integer.parseInt(itemLore.get(1).replace(StringUtils.translate("&bGo to page "), ""));
 
-                    player.openInventory(new PlayerListGUI(plugin).GUI(page));
+                    player.openInventory(new PlayerListGUI(plugin).GUI(player, page));
 
                 } else if(itemLore.contains(StringUtils.translate("&eClick to view additional stats!"))){
                     player.openInventory(new PlayerStatsGUI().GUI(player));

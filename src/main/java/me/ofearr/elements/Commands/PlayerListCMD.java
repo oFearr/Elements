@@ -22,7 +22,7 @@ public class PlayerListCMD implements CommandExecutor {
                 if(sender instanceof Player){
                     Player player = (Player) sender;
 
-                    player.openInventory(new PlayerListGUI(plugin).GUI(1));
+                    player.openInventory(new PlayerListGUI(plugin).GUI(player,1));
                 }
 
             } else {

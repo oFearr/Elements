@@ -1,6 +1,7 @@
 package me.ofearr.elements;
 
 import me.ofearr.elements.Commands.*;
+import me.ofearr.elements.Events.Admin.VanishHandler;
 import me.ofearr.elements.Events.Admin.XrayAlertsHandler;
 import me.ofearr.elements.Events.Misc.*;
 import me.ofearr.elements.PlayerData.PlayerDataHandler;
@@ -16,6 +17,7 @@ public final class Elements extends JavaPlugin {
     public LuckPerms luckPerms;
     public LuckPermsUtils luckPermsUtils;
     public HomeUtils homeUtils;
+    public VanishHandler vanishHandler;
 
     @Override
     public void onEnable() {
@@ -53,6 +55,9 @@ public final class Elements extends JavaPlugin {
     }
 
     public void registerEvents(){
+        vanishHandler = new VanishHandler(this);
+        vanishHandler.startActionBarUpdates();
+
         Bukkit.getPluginManager().registerEvents(new CustomJoinMessageHandler(this), this);
         Bukkit.getPluginManager().registerEvents(new EntityBlacklistHandler(this), this);
         Bukkit.getPluginManager().registerEvents(new PlayerListHandler(this), this);

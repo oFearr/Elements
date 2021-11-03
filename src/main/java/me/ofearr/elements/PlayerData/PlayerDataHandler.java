@@ -97,6 +97,12 @@ public class PlayerDataHandler implements Listener {
             modified = true;
         }
 
+        if(dataManager.getConfig().get("settings.glow") == null){
+            dataManager.getConfig().set("settings.glow", false);
+
+            modified = true;
+        }
+
         if(modified){
             dataManager.saveConfig();
         }

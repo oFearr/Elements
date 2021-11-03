@@ -1,6 +1,7 @@
 package me.ofearr.elements.GUI;
 
 import me.ofearr.elements.Elements;
+import me.ofearr.elements.Events.Admin.VanishHandler;
 import me.ofearr.elements.Utils.GUIPagingUtil;
 import me.ofearr.elements.Utils.ServerUtils;
 import me.ofearr.elements.Utils.StringUtils;
@@ -24,7 +25,7 @@ public class PlayerListGUI {
         this.plugin = elements;
     }
 
-    public Inventory GUI(int page){
+    public Inventory GUI(Player player, int page){
         Inventory inv = Bukkit.createInventory(null, 54, "Online Players");
 
         ItemStack fillerItem = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
@@ -37,26 +38,30 @@ public class PlayerListGUI {
 
         List<ItemStack> playerItems = new ArrayList<>();
 
-        for(Player player : Bukkit.getOnlinePlayers()){
-            ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD);
+        for(Player p : Bukkit.getOnlinePlayers()){
 
-            SkullMeta skullMeta = (SkullMeta) playerHead.getItemMeta();
-            skullMeta.setOwningPlayer(player);
+            if(!(VanishHandler.isPlayerVanished(p) && !player.hasPermission("elements.vanish"))){
+                ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD);
 
-            skullMeta.setDisplayName(StringUtils.translate(plugin.luckPermsUtils.getPlayerPrefix(player) + " &f" + player.getName()));
+                SkullMeta skullMeta = (SkullMeta) playerHead.getItemMeta();
+                skullMeta.setOwningPlayer(p);
 
-            List<String> itemLore = new ArrayList<>();
-            itemLore.add(" ");
-            itemLore.add(StringUtils.translate("&cHealth: &d" + decimalFormat.format(player.getHealth()) + "/" + decimalFormat.format(player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) + " ❤"));
-            itemLore.add(StringUtils.translate("&aWorld: " + serverUtils.getWorldNameString(player.getWorld())));
-            itemLore.add(" ");
-            itemLore.add(StringUtils.translate("&eClick to view additional stats!"));
+                skullMeta.setDisplayName(StringUtils.translate(plugin.luckPermsUtils.getPlayerPrefix(p) + " &f" + p.getName()));
 
-            skullMeta.setLore(itemLore);
+                List<String> itemLore = new ArrayList<>();
+                itemLore.add(" ");
+                itemLore.add(StringUtils.translate("&cHealth: &d" + decimalFormat.format(p.getHealth()) + "/" + decimalFormat.format(p.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()) + " ❤"));
+                itemLore.add(StringUtils.translate("&aWorld: " + serverUtils.getWorldNameString(p.getWorld())));
+                itemLore.add(" ");
+                itemLore.add(StringUtils.translate("&eClick to view additional stats!"));
 
-            playerHead.setItemMeta(skullMeta);
+                skullMeta.setLore(itemLore);
 
-            playerItems.add(playerHead);
+                playerHead.setItemMeta(skullMeta);
+
+                playerItems.add(playerHead);
+            }
+
         }
 
         ItemStack backItem = new ItemStack(Material.ARROW);
